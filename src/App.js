@@ -9,21 +9,6 @@ import {
   Button,
 } from 'reactstrap';
 
-
-// load in JSON data from file
-// var data;
-
-// var oReq = new XMLHttpRequest();
-// oReq.onload = reqListener;
-// oReq.open("get", "json_files/locations.json", true);
-// oReq.send();
-
-// function reqListener(e) {
-//     data = JSON.parse(this.responseText);
-// }
-// console.log(data);
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +19,7 @@ class App extends Component {
     };
     this.handlePreviousClick = this.handlePreviousClick.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
+    this.updateInput = this.updateInput.bind(this);
   }
 
   handleNextClick() {
@@ -41,12 +27,14 @@ class App extends Component {
     this.state.stepCount = this.state.stepCount + 1;
     // stepCount = this.state.stepCount++;
     this.setState({ stepCount: this.state.stepCount });
+    this.addItem();
   }
 
   handlePreviousClick() {
     this.state.stepCount = this.state.stepCount - 1;
     // stepCount = stepCount--;
     this.setState({ stepCount: this.state.stepCount-- });
+    this.addItem();
   }
 
   componentDidMount() {
@@ -58,6 +46,7 @@ class App extends Component {
       "beforeunload",
       this.saveStateToLocalStorage.bind(this)
     );
+    console.log("componentDidMount");
   }
 
   componentWillUnmount() {
@@ -68,6 +57,7 @@ class App extends Component {
 
     // saves if component has a chance to unmount
     this.saveStateToLocalStorage();
+    console.log("componentWillUnmount");
   }
 
   hydrateStateWithLocalStorage() {
@@ -109,7 +99,7 @@ class App extends Component {
       id: 1 + Math.random(),
       value: this.state.newItem.slice()
     };
-
+    console.log("newItem", newItem);
     // copy current list of items
     const list = [...this.state.list];
 
@@ -190,28 +180,29 @@ function StepInitial(props) {
 
 
 function StepOne(props) {
+  console.log("props==", props);
   return ( 
     <div className="container">
         <h3>1 What type of film do you need ?</h3>
         <div className="row"> 
           <div className="form-check form-check-inline">
-            <input type="radio" className="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" value="1" defaultChecked />
+            <input type="radio" className="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" value="highlights_film"  onChange={e => this.updateInput("newItem", e.target.value)} />
             <label className="form-check-label" htmlFor="materialInline1">HIGHLIGHTS FILM</label>
           </div>
 
           <div className="form-check form-check-inline">
-            <input type="radio" className="form-check-input" id="materialInline2" name="inlineMaterialRadiosExample" value="1" />
+            <input type="radio" className="form-check-input" id="materialInline2" name="inlineMaterialRadiosExample" value="animation" />
             <label className="form-check-label" htmlFor="materialInline2">ANIMATION</label>
           </div>
         </div>
         <div className="row"> 
           <div className="form-check form-check-inline">
-            <input type="radio" className="form-check-input" id="materialInline3" name="inlineMaterialRadiosExample" value="1" />
+            <input type="radio" className="form-check-input" id="materialInline3" name="inlineMaterialRadiosExample" value="taking_interview" />
             <label className="form-check-label" htmlFor="materialInline3">TALKING HEAD / INTERVIEW</label>
           </div>
 
           <div className="form-check form-check-inline">
-            <input type="radio" className="form-check-input" id="materialInline4" name="inlineMaterialRadiosExample" value="1" />
+            <input type="radio" className="form-check-input" id="materialInline4" name="inlineMaterialRadiosExample" value="request_callback" />
             <label className="form-check-label" htmlFor="materialInline4">REQUEST CALLBACK</label>
           </div>
         </div>
@@ -227,7 +218,7 @@ function StepTwo(props) {
         <div className="row"> 
           <div className="form-check form-check-inline">
             <label className="form-check-label" htmlFor="materialInline1">LOCATION 1:</label>
-            <select name="location">
+            <select name="location" className="form-control">
             <option value="">Search (Post code, building name)</option>
             </select>
           </div>

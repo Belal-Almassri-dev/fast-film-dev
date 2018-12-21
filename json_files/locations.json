@@ -1,8 +1,0 @@
-{"_id":{"$oid":"5c1240a9533b516f862faaa3"},"location_name":"LPM London/Plymouth/Manchester","no_of_person":1,"price":208}
-{"_id":{"$oid":"5c1241ef533b516f862faaf1"},"location_name":"LPM London/Plymouth/Manchester","no_of_person":2,"price":328}
-{"_id":{"$oid":"5c12420b533b516f862faafe"},"location_name":"OUK Other UK","no_of_person":1,"price":358}
-{"_id":{"$oid":"5c12420b533b516f862fab00"},"location_name":"OUK Other UK","no_of_person":2,"price":438}
-{"_id":{"$oid":"5c12420b533b516f862fab02"},"location_name":"EUR Europe","no_of_person":1,"price":1625}
-{"_id":{"$oid":"5c12420b533b516f862fab04"},"location_name":"EUR Europe","no_of_person":2,"price":2325}
-{"_id":{"$oid":"5c124248533b516f862fab19"},"location_name":"ROW Rest of World","no_of_person":1,"price":3050}
-{"_id":{"$oid":"5c124248533b516f862fab1b"},"location_name":"ROW Rest of World","no_of_person":2,"price":4910}
